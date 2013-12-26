@@ -36,15 +36,16 @@
 #if defined(BSD) && !defined(__APPLE__) && !defined(WIN32)
 #include <sys/soundcard.h>
 #endif
+#if defined(_WIN32)
 // USE http://www.icsi.berkeley.edu/ftp/pub/speech/software/praatlib-0.3/src/fon/Sound_audio.c
 // for samples using both windows and linux sound drivers
 #include <windows.h>
 #include <dsound.h>
 #include <mmsystem.h>
+#endif
 #include <math.h>
 #include <mbelib.h>
 #include <sndfile.h>
-#include <portaudio.h>
 /*
  * global variables
  */
