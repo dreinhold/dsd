@@ -25,18 +25,26 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#if !defined(_WIN32)
 #include <sys/ioctl.h>
+#endif
 #include <fcntl.h>
 #include <unistd.h>
 #ifdef SOLARIS
 #include <sys/audioio.h>
 #endif
-#if defined(BSD) && !defined(__APPLE__)
+#if defined(BSD) && !defined(__APPLE__) && !defined(WIN32)
 #include <sys/soundcard.h>
 #endif
+// USE http://www.icsi.berkeley.edu/ftp/pub/speech/software/praatlib-0.3/src/fon/Sound_audio.c
+// for samples using both windows and linux sound drivers
+#include <windows.h>
+#include <dsound.h>
+#include <mmsystem.h>
 #include <math.h>
 #include <mbelib.h>
 #include <sndfile.h>
+#include <portaudio.h>
 /*
  * global variables
  */

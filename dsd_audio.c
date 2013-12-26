@@ -278,7 +278,7 @@ openAudioOutDevice (dsd_opts * opts, int speed)
     }
 #endif
 
-#if defined(BSD) && !defined(__APPLE__)
+#if defined(BSD) && !defined(__APPLE__) && !defined(_WIN32)
 
   int fmt;
 
@@ -377,7 +377,7 @@ openAudioInDevice (dsd_opts * opts)
       }
 #endif
 
-#if defined(BSD) && !defined(__APPLE__)
+#if defined(BSD) && !defined(__APPLE__) && !defined(_WIN32)
     int fmt;
   
     if (opts->split == 1)

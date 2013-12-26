@@ -1,10 +1,13 @@
+#if !defined(_WIN32)
 #include <termios.h>
+#endif
 #include "dsd.h"
 
 void
 openSerial (dsd_opts * opts, dsd_state * state)
 {
-
+  #if !defined(_WIN32) 
+  /* No windows support for serial for now */
   struct termios tty;
   speed_t baud;
 
@@ -64,13 +67,13 @@ openSerial (dsd_opts * opts, dsd_state * state)
   tty.c_cc[VTIME] = 5;
 
   tcsetattr (opts->serial_fd, TCSANOW, &tty);
-
+  #endif
 }
 
 void
 resumeScan (dsd_opts * opts, dsd_state * state)
 {
-
+  #if !defined(_WIN32)
   char cmd[16];
   ssize_t result;
 
@@ -87,4 +90,5 @@ resumeScan (dsd_opts * opts, dsd_state * state)
       result = write (opts->serial_fd, cmd, 5);
       state->numtdulc = 0;
     }
+  #endif
 }
